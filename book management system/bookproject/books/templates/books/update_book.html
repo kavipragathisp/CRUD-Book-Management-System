@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Book</title>
+</head>
+<body>
+    <h1>Update Book Price</h1>
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    <p><strong>Title:</strong> {{ book.title }}</p>
+    <p><strong>Author:</strong> {{ book.author }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label>New Price (₹):</label><br>
+        <input type="number" name="price"
+               value="{{ book.price }}" min="0" step="1" required>
+        <br><br>
+
+        <button type="submit">Update Price</button>
+    </form>
+
+    <br>
+    <a href="{% url 'book_list' %}">Back to Book List</a>
+</body>
+</html>
